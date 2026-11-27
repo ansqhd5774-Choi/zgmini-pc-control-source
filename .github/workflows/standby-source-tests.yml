@@ -1,0 +1,27 @@
+name: Standby Windows isolated source tests
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  standby-source:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - name: Verify published source bytes
+        shell: pwsh
+        run: |
+          node --input-type=module -e "import fs from 'node:fs'; import {createHash} from 'node:crypto'; const m=JSON.parse(fs.readFileSync('SOURCE_REVISION.json')); for(const f of m.files){const actual=createHash('sha256').update(fs.readFileSync(f.path)).digest('hex'); if(actual!==f.sha256)throw Error('SOURCE_SNAPSHOT_DRIFT: '+f.path);} console.log('Pinned source files verified: '+m.files.length);"
+      - name: Test real isolated Windows child processes and filesystem
+        shell: pwsh
+        run: node --test tests/controller-standby-windows-isolation.test.mjs
+
