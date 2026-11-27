@@ -1,0 +1,28 @@
+{
+  "schema": "ZGMINI_PUBLIC_STANDBY_SOURCE_SNAPSHOT_V1",
+  "sourceRepository": "ansqhd5774-Choi/zgmini-pc-control",
+  "sourceCommit": "3eab41671d7c3acc7d2321d0b7abc9cb84dc0e2d",
+  "scope": "STANDBY_ISOLATED_SOURCE_TESTS_ONLY",
+  "files": [
+    {
+      "path": "controller/common.mjs",
+      "sha256": "91e4ceb5d26412893cc047670a420338aa8ef293e95498f852ac0a2f5edd6cc6"
+    },
+    {
+      "path": "controller/standby.mjs",
+      "sha256": "e18c09b7e9b90fc483d5200e1e0c4741d2e4f93e049328566d710e37c21be7e7"
+    },
+    {
+      "path": "controller/supervisor.mjs",
+      "sha256": "5ec0952872adcaa16eb14adec614f024bac7264deb5b59fb68b9080f0edb0344"
+    },
+    {
+      "path": "tools/runner-watchdog.mjs",
+      "sha256": "8d98b99b24eef14d0577a93457832e7e7ba3459f00b65dbfa6df349efd958891"
+    },
+    {
+      "path": "tests/controller-standby-windows-isolation.test.mjs",
+      "sha256": "87574a6326cf01d69a3a676ed9dbcc350b05d453f23d0c3442ee30b10d929d5d"
+    }
+  ]
+}
